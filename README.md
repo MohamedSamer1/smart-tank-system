@@ -28,7 +28,7 @@ The system will acquire sensor measurements and use them to estimate parameters 
 
 The project combines embedded C++ development, Python and C++ robotics software, sensor integration, engineering calculations, and mechanical CAD design using SolidWorks.
 
-> 🚧 **Project status:** The project is under development. Initial documentation and mechanical CAD modeling have begun. Hardware integration, firmware, sensor calibration, and ROS 2 functionality will be developed and validated progressively.
+> 🚧 **Project status:** The project is under development. Initial documentation, electrical design, individual mechanical models, and the SolidWorks assembly have been completed. Hardware integration, firmware, sensor calibration, and ROS 2 functionality will be developed and validated progressively.
 
 ## 🎯 Objectives
 
@@ -40,7 +40,7 @@ The project combines embedded C++ development, Python and C++ robotics software,
 - 🔌 **Serial Communication** — Transmit measurements from the Arduino to a computer over USB.
 - 🤖 **ROS 2 Integration** — Develop nodes for receiving, processing, and distributing measurement data.
 - 🖥️ **Graphical User Interface** — Display sensor readings, calculated parameters, and tank status.
-- 🧩 **Mechanical CAD Design** — Model the cylindrical tank, sensor mounting arrangements, supporting brackets, and assembly in SolidWorks.
+- 🧩 **Mechanical CAD Design** — Model the cylindrical tank, sensor mounting arrangements, supporting brackets, and complete assembly in SolidWorks.
 - 📊 **Testing and Validation** — Compare system measurements against reference measurements and document accuracy.
 
 ## 🏗️ System Architecture
@@ -49,7 +49,7 @@ The proposed system consists of a physical measurement system, an Arduino contro
 
 ```text
 ┌────────────────────────────────────────┐
-│               LIQUID TANK              │
+│              LIQUID TANK               │
 │                                        │
 │  HC-SR04 Ultrasonic Sensor             │
 │  Load Cell + HX711 Amplifier           │
@@ -58,7 +58,7 @@ The proposed system consists of a physical measurement system, an Arduino contro
                     │ Sensor Signals
                     ▼
 ┌────────────────────────────────────────┐
-│               ARDUINO UNO              │
+│               ARDUINO UNO               │
 │                                        │
 │  Sensor Acquisition                    │
 │  Initial Data Handling                 │
@@ -93,7 +93,7 @@ _This diagram represents the planned architecture. The final implementation may 
 | Load-cell brackets                   | Support the tank and provide the intended load path through the load cell |
 | USB cable                            | Connects the Arduino to the computer                                      |
 
-The load-cell model and capacity, tank dimensions, and final hardware specifications will be confirmed as the design progresses.
+The load-cell model and capacity, tank dimensions, and final hardware specifications will be documented as the design progresses.
 
 For detailed component descriptions and proposed electrical connections, see:
 
@@ -102,37 +102,39 @@ For detailed component descriptions and proposed electrical connections, see:
 
 ## 🧩 CAD Design and Mechanical Assembly
 
-The mechanical structure is being modeled in **SolidWorks**. The CAD assembly represents the tank, sensor mounting arrangements, and supporting mechanical structure.
+The mechanical design of the Smart Tank System has been modeled and assembled using **SolidWorks**.
+
+The completed mechanical model includes the cylindrical tank, supporting structure, sensor mounting arrangements, and the mechanical components required for the proposed monitoring system.
 
 ### Mechanical Design
 
 - **Cylindrical Tank** — The main structure that contains the liquid being monitored.
-- **Load-Cell Brackets** — Located underneath the tank to support the assembly and accommodate the load cell for mass measurement.
-- **Top Cover and Ultrasonic Sensor** — A cover fitted above the tank, with an opening to mount the HC-SR04 ultrasonic sensor facing the liquid surface.
+- **Load-Cell Brackets** — Located underneath the tank to support the assembly and accommodate the load-cell mounting arrangement.
+- **Top Cover and Ultrasonic Sensor Mounting** — A cover fitted above the tank, with an opening to mount the HC-SR04 ultrasonic sensor facing the liquid surface.
 - **Temperature Probe Opening** — A hole near the bottom of the tank's side wall for inserting the waterproof DS18B20 probe into the liquid.
+- **Mechanical Assembly** — Combines the individual modeled components into one SolidWorks assembly.
 
-### CAD Objectives
+### CAD Progress
 
-- Model the individual mechanical components and assemble them in SolidWorks.
-- Define the relative positions of the tank, cover, sensors, and supporting brackets.
-- Check component alignment, clearances, and assembly fit.
-- Plan the temperature probe opening and sealing arrangement.
-- Verify that the load-cell mounting arrangement directs the intended load through the sensor.
-- Prepare engineering drawings and assembly views to support physical construction.
+- [x] Model individual mechanical components.
+- [x] Create the cylindrical tank model.
+- [x] Design the load-cell brackets.
+- [x] Model the top cover and ultrasonic sensor mounting.
+- [x] Add the temperature probe opening.
+- [x] Complete the SolidWorks mechanical assembly.
 
 ### CAD Files and Visualization
 
-The `cad/` directory will contain the native SolidWorks files, exported engineering drawings, and images of the mechanical model.
+The `cad/` directory contains the native SolidWorks files and visual representations of the mechanical design.
 
-| Directory       | Contents                                                   |
-| --------------- | ---------------------------------------------------------- |
-| `cad/parts/`    | Individual SolidWorks part files (`.SLDPRT`)               |
-| `cad/assembly/` | Main assembly and subassemblies (`.SLDASM`)                |
-| `cad/drawings/` | Engineering drawings (`.SLDDRW`) and exported PDF drawings |
-| `cad/renders/`  | CAD screenshots and rendered views (`.png`, `.jpg`)        |
-| `cad/README.md` | CAD file organization and assembly notes                   |
+| Directory       | Contents                                            |
+| --------------- | --------------------------------------------------- |
+| `cad/parts/`    | Individual SolidWorks part files (`.SLDPRT`)        |
+| `cad/assembly/` | Main assembly and subassemblies (`.SLDASM`)         |
+| `cad/renders/`  | CAD screenshots and rendered views (`.png`, `.jpg`) |
+| `cad/README.md` | CAD file organization and assembly documentation    |
 
-_The CAD model is in progress. Dimensions, component specifications, and final assembly details will be documented as the design develops._
+The initial mechanical modeling and assembly objectives have been completed. The CAD model provides the mechanical representation of the proposed system and will serve as a reference during hardware integration.
 
 ## 💻 Software and Technologies
 
@@ -238,7 +240,7 @@ Arduino Bridge Node
     └── /tank/sensors/weight_kg
                 │
                 ▼
-       Tank Processor Node
+        Tank Processor Node
                 │
                 ├── /tank/level_m
                 ├── /tank/volume_l
@@ -247,7 +249,7 @@ Arduino Bridge Node
                 └── /tank/status
                          │
                          ▼
-                   Tank GUI Node
+                    Tank GUI Node
                          │
                          ▼
                     User Interface
@@ -342,17 +344,15 @@ Density estimation requires valid mass and volume measurements. Results may be u
 
 All calculations will account for tank geometry, sensor placement, calibration, measurement uncertainty, and valid measurement ranges.
 
+For the detailed equations, variables, units, and planned verification procedures, see [Engineering Calculations](hardware/calculations.md).
+
 ## 📚 Documentation
 
 ### Hardware Documentation
 
 - [Hardware Components](hardware/components.md) — Component descriptions, responsibilities, and engineering considerations.
 - [Hardware Wiring Guide](hardware/wiring.md) — Proposed Arduino pin assignments, sensor connections, load-cell wiring, and power distribution.
-
-### CAD Documentation
-
-- [CAD Directory](cad/) — SolidWorks parts, assemblies, engineering drawings, and rendered views as they become available.
-- [CAD Notes](cad/README.md) — CAD file organization and assembly documentation.
+- [Engineering Calculations](docs/calculations.md) — Equations and methods for calculating liquid level, volume, fill percentage, mass, and density.
 
 ### Project Documents
 
@@ -364,48 +364,54 @@ All calculations will account for tank geometry, sensor placement, calibration, 
 
 ## 🛠️ Development Roadmap
 
-- [x] Define the initial project scope
-- [x] Prepare the project proposal
-- [x] Prepare the literature review
-- [x] Document the initial hardware components
-- [x] Prepare the proposed hardware wiring guide
-- [x] Begin the SolidWorks mechanical model
-- [x] Finalize hardware components and specifications
-- [ ] Complete the cylindrical tank model
-- [ ] Design the load-cell brackets
-- [ ] Model the top cover and ultrasonic sensor mounting
-- [ ] Add the temperature probe opening
-- [ ] Complete the mechanical assembly
-- [ ] Generate engineering drawings and assembly views
-- [ ] Finalize the circuit design and physical connections
-- [ ] Implement Arduino sensor acquisition in C++
-- [ ] Calibrate and validate individual sensors
-- [ ] Implement USB serial communication
-- [ ] Develop the Arduino bridge node
-- [ ] Develop the tank processor node
-- [ ] Develop the tank GUI node
-- [ ] Define and validate ROS 2 topics and message types
-- [ ] Create a launch file for the three ROS 2 nodes
-- [ ] Test communication between the Arduino and ROS 2
-- [ ] Validate engineering calculations against reference measurements
-- [ ] Conduct system-level testing
-- [ ] Document experimental results and measurement accuracy
+### Project Planning and Design
+
+- [x] Define the initial project scope.
+- [x] Prepare the project proposal.
+- [x] Prepare the literature review.
+- [x] Document the initial hardware components.
+- [x] Prepare the proposed hardware wiring guide.
+- [x] Document the engineering calculations.
+- [x] Complete individual SolidWorks mechanical parts.
+- [x] Complete the SolidWorks mechanical assembly.
+
+### Hardware and Embedded Systems
+
+- [ ] Finalize physical hardware connections.
+- [ ] Implement Arduino sensor acquisition in C++.
+- [ ] Calibrate and validate individual sensors.
+- [ ] Implement USB serial communication.
+
+### ROS 2 Development
+
+- [ ] Develop the Arduino bridge node.
+- [ ] Develop the tank processor node.
+- [ ] Develop the tank GUI node.
+- [ ] Define and validate ROS 2 topics and message types.
+- [ ] Create a launch file for the three ROS 2 nodes.
+- [ ] Test communication between the Arduino and ROS 2.
+
+### System Testing and Validation
+
+- [ ] Validate engineering calculations against reference measurements.
+- [ ] Conduct system-level testing.
+- [ ] Document experimental results and measurement accuracy.
 
 ## 📊 Testing and Validation
 
 Testing will focus on:
 
-- Sensor calibration and repeatability
-- Liquid-level and volume-estimation accuracy
-- Load-cell accuracy and tare compensation
-- Temperature-measurement accuracy
-- USB serial communication reliability
-- ROS 2 topic publication and subscription
-- Data exchange between all three nodes
-- GUI display accuracy and status updates
-- Comparison of calculated values against reference measurements
-- Mechanical fit and alignment of the CAD assembly
-- Overall system performance under different operating conditions
+- Sensor calibration and repeatability.
+- Liquid-level and volume-estimation accuracy.
+- Load-cell accuracy and tare compensation.
+- Temperature-measurement accuracy.
+- USB serial communication reliability.
+- ROS 2 topic publication and subscription.
+- Data exchange between all three nodes.
+- GUI display accuracy and status updates.
+- Comparison of calculated values against reference measurements.
+- Mechanical fit and alignment of the CAD assembly.
+- Overall system performance under different operating conditions.
 
 Experimental results and measured accuracy will be documented after testing begins.
 
@@ -413,14 +419,14 @@ Experimental results and measured accuracy will be documented after testing begi
 
 Potential extensions include:
 
-- Live ROS 2 dashboards and enhanced data visualization
-- Data logging and historical analysis
-- Measurement filtering and noise reduction
-- Support for different tank geometries
-- Improved calibration and uncertainty analysis
-- Sensor diagnostics and communication monitoring
-- Additional tank status indicators and configurable warnings
-- Further mechanical refinements based on prototype testing
+- Live ROS 2 dashboards and enhanced data visualization.
+- Data logging and historical analysis.
+- Measurement filtering and noise reduction.
+- Support for different tank geometries.
+- Improved calibration and uncertainty analysis.
+- Sensor diagnostics and communication monitoring.
+- Additional tank status indicators and configurable warnings.
+- Further mechanical refinements based on prototype testing.
 
 ## 👨‍💻 Author
 
