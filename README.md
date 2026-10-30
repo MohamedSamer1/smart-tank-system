@@ -58,7 +58,7 @@ The proposed system consists of a physical measurement system, an Arduino contro
                     │ Sensor Signals
                     ▼
 ┌────────────────────────────────────────┐
-│               ARDUINO UNO               │
+│               ARDUINO UNO              │
 │                                        │
 │  Sensor Acquisition                    │
 │  Initial Data Handling                 │
